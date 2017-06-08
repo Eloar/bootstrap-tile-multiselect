@@ -1,0 +1,28 @@
+{
+  "name": "bootstrap-tile-multiselect",
+  "description": "Another Bootstrap v3 multiselect variation but with fancy tiles",
+  "homepage": "https://github.com/Eloar/bootstrap-tile-multiselect",
+  "version": "0.0.1",
+  "keywords": [
+    "js",
+    "css",
+    "bootstrap",
+    "jquery",
+    "multiselect",
+    "tile"
+  ],
+  "main": [
+    "./css/bootstrap-tile-multiselect.css",
+    "./js/bottstrap-tile-multiselect.js"
+  ],
+  "dependencies" : {
+    "jquery": ">= 1.11.0",
+    "bootstrap": ">=3.0.0"
+  },
+  "ignore" : [
+    "*.html",
+    "*.md",
+    "*.png",
+    "*.php"
+  ]
+}

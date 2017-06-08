@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>BootstrapTileMultiselect test</title>
+    <link rel="stylesheet" href="css/bootstrap-tile-multiselect.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="js/bootstrap-tile-multiselect.js"></script>
+</head>
+<body>
+    <form>
+        <label for="test-select">Test</label>
+        <select id="test-select" multiple data-limit="2">
+            <option value="1" selected>one</option>
+            <option value="2" selected>two</option>
+            <option value="3">thre</option>
+            <option value="4" data-description="super fajny dodatkowy opis elementu">four</option>
+        </select>
+    </form>
+<script type="application/javascript">
+    $('#test-select').tileMultiselect(
+        {
+            'description': function(elem, value, text) {
+                return value + ' ' + text;
+            }
+        }
+    );
+</script>
+</body>
+</html>

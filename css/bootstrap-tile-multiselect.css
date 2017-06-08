@@ -1,0 +1,35 @@
+.row.btm-row:first-of-type {
+    margin-top: 0;
+}
+.row.btm-row {
+    margin-top: 15px;
+}
+.btn.btm-tile {
+    width: 100%;
+    min-height: 3em;
+    display:flex;
+    align-items: center;
+}
+.btn.btm-tile .title {
+    white-space: normal;
+}
+.btn.btm-tile .uncheck, .btn.btm-tile.active .check {
+    display: block;
+}
+.btn.btm-tile .check, .btn.btm-tile.active .uncheck {
+    display: none;
+}
+
+.btm-tile .icon-wrap .icon {
+    font-size: 2em;
+}
+
+.btm-tile .content-wrapper {
+    padding-left: 5%;
+    width: 100%;
+    text-align: left;
+}
+
+.btm-tile .description {
+    font-size: 0.7em;
+}
