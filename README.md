@@ -28,39 +28,48 @@ select element interchangebly.
 
 1. `checkIcon`
 	* **default value**: `glyphicon glyphicon-check`
-	* **type**: string
+	* **type**: string or function(element, value, text)
 	* **description**:
 There are 2 icons on tile: checkIcon for active/selected and uncheckIcon for inactive/unselected state. checkIcon 
 parameter defines class for checkIcon. This allows you to define your own icon for selected state.
+
+If callback function is provided it should return string which will be set as class for icon element. For example when
+using Glyphicon it might return ```glyphicon glyphicon-check```.
 2. `uncheckIcon`
 	* **default value**: `glyphicon glyphicon-unchecked`
-	* **type**: string
+	* **type**: string or function(element, value, text)
 	* **description**:
 There are 2 icon on tile, uncheckIcon is showed for inactive/unselected state. Parameter defines class set for
 uncheckIcon span. This allows you to define your own icon for unselected state. Default value contains 'framework'
 class so you won't need to use any tricks to switch from glyphicon (default) to FontAwesome i.e.
-1. `columns`
+
+If callback function is provided it should return string value to be set as class attribute value for icon element. For
+example using Glyphicon it might return ```glyphicon glyphicon-uncheck```
+3. `columns`
 	* **default value**: 3
 	* **type**: string
 	* **description**:
 Tiles are aranged in columns using Bootstrap grid system. This parameter is way to control number of columns. Value of 
 this parameter should be total divisor of 12.
-1. `tileActiveClass`
+4. `tileActiveClass`
 	* **default value**: btn-primary
 	* **type**: string
 	* **description**:
 Defines class applied to whole tile when it is selected.
-1. `tileInactiveClass`
+5. `tileInactiveClass`
 	* **default value**: btn-default
-	* **type**: string
+	* **type**: string or function(element, value, text)
 	* **description**:
-Defines class applied to whole tile when it is in unselected state.
-1. `limit`
+Defines class applied to whole tile when it is in unselected state. It might be defined as callback, which will be invoked
+for each button element during buttons initialization and each time its state is changed. Returned value is not copied
+upon initialization, thus it might be used to set class dynamicly during whole TileMultiselect control lifespan.
+Function return value should be string as it will be added to element `class` attribute value.
+6. `limit`
 	* **default value**: null
 	* **type**: number
 	* **description**:
 Defines limit for maximum number of selected tiles. It has no affect when control is in single-select state.
-1. `description`
+7. `description`
 	* default value: null
 	* type: string or function(elem, value, text)
 	* description:
@@ -79,20 +88,20 @@ Disables control.
 ```javascript
 $('#tileMultiselect').tileMultiselect('disable');
 ````
-1. `enable`
+2. `enable`
 Enables control
 ```javascript
 $('#tileMultiselect').tileMultiselect('enable');
 ```
-1. `toggle`
+3. `toggle`
 Toggles control. It might be invoked with additional boolean parameter. If parameter is provided, control will be shown
 according to its value rather than its current visibility.
 ```javascript
 $('#tileMultiselect').tileMultiselect('toggle', condition);
 ```
-1. `clearSelection`
+4. `clearSelection`
 Clears tiles selections and sets underlying `select` value to null.
-1. `selectValue`
+5. `selectValue`
 Selects value if it exists in underlying `select` element.
 
 HTML code example:
