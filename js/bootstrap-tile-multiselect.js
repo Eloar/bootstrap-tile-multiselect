@@ -12,6 +12,7 @@
         this.setupCallbackOptions();
         this.buildContainer();
         this.initButtons();
+        this.initErrors();
 
         this.$select.hide().after(this.$container);
     }
@@ -73,6 +74,7 @@
             this.checkLimit();
 
             this.$select.on('change', $.proxy(this.handleSelectChange, this));
+            this.$select.on('invalid', $.proxy(this.checkErrors, this));
         },
         initButtons: function() {
             $('a.btm-tile', this.$container).on('click', $.proxy(function(event) {
@@ -91,7 +93,19 @@
                     }
                 }
                 this.selectElem($target);
+                // check for errors
+                this.checkErrors();
+
             }, this));
+        },
+        initErrors: function() {
+            this.$error = $('<div class="col-sm-12 alert alert-danger"></div>');
+            this.$container.prepend(this.$error);
+            this.$error.hide();
+        },
+        checkErrors: function() {
+            this.$error.text(this.$select[0].validationMessage);
+            this.$error.toggle(!this.$select[0].checkValidity());
         },
         checkLimit: function() {
             if (typeof this.options.limit != 'number') {

@@ -1,4 +1,7 @@
 # CHANGELOG
+## v0.0.3
+* `destroy` method added
+* errors handling added
 ## v0.0.2
 * added callbacks parameter `label`
 * added callback handling for:
