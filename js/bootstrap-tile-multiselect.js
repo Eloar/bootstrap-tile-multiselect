@@ -174,6 +174,14 @@
             } else {
                 this.disable();
             }
+        },
+        /**
+         * Unbind plugin from element
+         */
+        destroy: function() {
+            this.$container.remove();
+            this.$select.show();
+            this.$select.data('tile-multiselect', null);
         }
     };
 
