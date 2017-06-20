@@ -143,7 +143,7 @@
             elem.toggleClass('active', condition)
                 .toggleClass('on', 'off')
                 .toggleClass(this.options.tileActiveClass(elem, elem.value, elem.text), this.options.tileInactiveClass(elem, elem.value, elem.text));
-            $('option[value=' + elem.data('value') +']', this.$select).attr('selected', elem.hasClass('active')? 'selected' : false);
+            $('option[value=' + elem.data('value') +']', this.$select).prop('selected', elem.hasClass('active')? 'selected' : false);
             this.checkLimit();
         },
         /**
