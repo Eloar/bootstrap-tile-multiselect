@@ -104,8 +104,10 @@
             this.$error.hide();
         },
         checkErrors: function() {
+            this.$select.off('invalid', this.checkErrors);
             this.$error.text(this.$select[0].validationMessage);
             this.$error.toggle(!this.$select[0].checkValidity());
+            this.$select.on('invalid', $.proxy(this.checkErrors, this));
         },
         checkLimit: function() {
             if (typeof this.options.limit != 'number') {
