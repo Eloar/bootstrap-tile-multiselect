@@ -1,6 +1,6 @@
 (function( $ ) {
     function TileMultiselect(select, options) {
-        if (select.tagName != 'SELECT') {
+        if (select.tagName !== 'SELECT') {
             console.error('This control is ment to be used with select element');
             return;
         }
@@ -44,7 +44,7 @@
             var tileCol = 12 / tileMS.options.columns;
             var row = null;
             $('option', this.$select).each(function() {
-                if (num++ % tileMS.options.columns == 0) {
+                if (num++ % tileMS.options.columns === 0) {
                     row = $('<div class="row btm-row"></div>');
                     tileMS.$container.append(row);
                 }
@@ -60,7 +60,7 @@
                     + tileMS.options.label($(this), this.value, this.text)
                     + '</span>';
                 var description = $(this).data('description') || tileMS.options.description($(this), this.value, this.text);
-                if (description != null) {
+                if (description !== null) {
                     tileCode += '<br /><span class="description">'+description+'</span>';
                 }
                 tileCode += '</div></a>';
@@ -110,7 +110,7 @@
             this.$select.on('invalid', $.proxy(this.checkErrors, this));
         },
         checkLimit: function() {
-            if (typeof this.options.limit != 'number') {
+            if (typeof this.options.limit !== 'number') {
                 return;
             }
             var $inactive = $('.btm-tile:not(.active)', this.$container);
@@ -121,11 +121,11 @@
             }
         },
         handleSelectChange: function(event) {
-            // 1. odepnij handler
+            // 1. unhook handler
             this.$select.off('change', this.handleSelectChange);
-            // 2. wyczysc kontrolke
+            // 2. clear control
             this.clearSelection();
-            // 3. ustaw nowe wartosci
+            // 3. set new values
             var value = $(event.target).val();
             if (!Array.isArray(value)) {
                 value = [value];
@@ -143,7 +143,7 @@
             elem.toggleClass('active', condition)
                 .toggleClass('on', 'off')
                 .toggleClass(this.options.tileActiveClass(elem, elem.value, elem.text), this.options.tileInactiveClass(elem, elem.value, elem.text));
-            $('option[value=' + elem.data('value') +']', this.$select).prop('selected', elem.hasClass('active')? 'selected' : false);
+            $('option[value="' + elem.data('value') + '"]', this.$select).prop('selected', elem.hasClass('active')? 'selected' : false);
             this.checkLimit();
         },
         /**
@@ -169,7 +169,7 @@
                 $(elem).addClass(this.options.tileInactiveClass(elem, elem.value, elem.text))
                     .removeClass(this.options.tileActiveClass(elem, elem.value, elem.text))
                     .removeClass('active');
-                $('option[value=' + $(elem).data('value') +']', this.$select).removeAttr('selected');
+                $('option[value="' + $(elem).data('value') + '"]', this.$select).removeAttr('selected');
             }, this));
         },
         disable: function() {
@@ -181,7 +181,7 @@
             $('.btm-tile', this.$container).removeClass('disabled');
         },
         toggle: function(condition) {
-            if (typeof condition == 'boolean') {
+            if (typeof condition === 'boolean') {
                 return condition? this.enable() : this.disable();
             }
 
@@ -204,7 +204,7 @@
     $.fn.tileMultiselect = function(option, parameter, extraOption) {
         return this.each(function() {
             var data =$(this).data('tile-multiselect');
-            var options = typeof option == "object" && option;
+            var options = typeof option === "object" && option;
 
             // initialize tile-multiselect
             if (!data) {
@@ -213,7 +213,7 @@
             }
 
             // call tile-multiselect method
-            if (typeof option == 'string') {
+            if (typeof option === 'string') {
                 data[option](parameter, extraOption);
             }
         });
