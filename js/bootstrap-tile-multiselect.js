@@ -26,7 +26,8 @@
             "uncheckIcon": function() { return "glyphicon glyphicon-unchecked"; },
             "limit": false,
             "description": null,
-            "label": function(e, v, t) { return t; }
+            "label": function(e, v, t) { return t; },
+            "layout": "row"
         },
         callbacks: [
             'description',
@@ -43,7 +44,43 @@
             var num = 0;
             var tileCol = 12 / tileMS.options.columns;
             var row = null;
-            $('option', this.$select).each(function() {
+            let tiles = new Array();
+            if (tileMS.options.layout === "column") {
+                let columnLengths = [];
+                let dataLength = $('option', this.$select).length;
+                if (dataLength % tileMS.options.columns === 0) {
+                    for (let i = 0; i < tileMS.options.columns; i++) {
+                        columnLengths.push(dataLength / tileMS.options.columns);
+                    }
+                } else {                    
+                    let columnLength = Math.floor(dataLength / tileMS.options.columns * 1) / 1;
+                    for (let i = 0; i < tileMS.options.columns; i++) {                        
+                        if (i < dataLength % tileMS.options.columns) {
+                            columnLengths.push(columnLength + 1);
+                        } else {
+                            columnLengths.push(columnLength);
+                        }
+                    }
+                }
+                
+                var addedIndexes = [];
+                for (let i = 0; i < columnLengths[0]; i++) {
+                    let index = i;
+
+                    for (let c = 0; c < tileMS.options.columns; c++) {
+                        if (addedIndexes.indexOf(index) === -1) {
+                            tiles.push($('option', this.$select)[index]);
+                            addedIndexes.push(index);
+                            index += columnLengths[c];
+                        }
+                    }
+                }
+            }
+            else {
+                tiles = $('option', this.$select);
+            }
+
+            $.each(tiles, function () {
                 if (num++ % tileMS.options.columns === 0) {
                     row = $('<div class="row btm-row"></div>');
                     tileMS.$container.append(row);

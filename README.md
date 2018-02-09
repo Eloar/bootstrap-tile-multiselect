@@ -80,6 +80,14 @@ select element interchangebly.
 string value with description or null for no description of tile.
 Another way to define tile description is to set `data-description` attribute on corresponding option element. This attribute value has higher priority over description callback which mean it overrides it and callback function won't be even called for this element.
 
+8.  `layout`
+	* **default value**: "row"
+	* **type**: string
+	* **valid values**: "row", "column"
+	* **description**:
+
+	Specifies whether the options should display across, then down or down, then across. When "row" is specified (the default behavior) options will display across, then down. When "column" is specified, options will display down, then across.
+
 ## Methods
 
 1. `disable`
